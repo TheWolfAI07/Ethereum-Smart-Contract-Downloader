@@ -15,10 +15,10 @@ To use this software, follow these steps:
 
 * url: URL (and port if is necessary) of the Ethereum blockchain
 * blocks: Block/s
-    * *. Recover all the chain
-    * Number of the block. Recover a specific block.
-    * Block 1 - Block 2. Recover the blocks between 2 blocks.
-    * Block 1 - * . Recover from 1 block to the final of the chain.
+    * *. Recover smart contracts from all the chain
+    * Number of the block. Recover smart contracts from a specific block.
+    * Block 1 - Block 2. Recover smart contracts between 2 blocks.
+    * Block 1 - * . Recover smart contracts from 1 block to the final of the chain.
 * api: The API provided by EtherScan.
 
 #### Example 1. Retrieve 1 block.
