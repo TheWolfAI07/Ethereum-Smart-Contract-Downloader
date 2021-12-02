@@ -8,7 +8,9 @@ This software is part of the [SANCUS platform](https://github.com/oeg-upm/sancus
 To use this software, follow these steps:
 
 1- Place the SmartContractExtractor-X.X.jar in some folder
+
 2- Place the config.json in the same folder than SmartContractExtractor-X.X.jar
+
 3- Configure config.json file as follow:
 
 * url: URL (and port if is necessary) of the Ethereum blockchain
