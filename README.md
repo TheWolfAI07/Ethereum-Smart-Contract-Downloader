@@ -1,4 +1,5 @@
 # Ethereum-Smart-Contract-Downloader
+
 A tool for extracting smart contracts from the Ethereum blockchain
 
 This software is part of the [SANCUS platform](https://github.com/oeg-upm/sancus), actually on development.
@@ -15,13 +16,13 @@ To use this software, follow these steps:
 
 * url: URL (and port if is necessary) of the Ethereum blockchain
 * blocks: Block/s
-    * *. Recover smart contracts from all the chain
-    * Number of the block. Recover smart contracts from a specific block.
-    * Block 1 - Block 2. Recover smart contracts between 2 blocks.
-    * Block 1 - * . Recover smart contracts from 1 block to the final of the chain.
+  * *. Recover smart contracts from all the chain
+  * Number of the block. Recover smart contracts from a specific block.
+  * Block 1 - Block 2. Recover smart contracts between 2 blocks.
+  * Block 1 - * . Recover smart contracts from 1 block to the final of the chain.
 * api: The API provided by EtherScan.
 
-#### Example 1. Retrieve 1 block.
+#### Example 1. Retrieve 1 block
 
 `````
 {
@@ -31,7 +32,7 @@ To use this software, follow these steps:
 }
 `````
 
-#### Example 2. Retrieve a range given 2 block.
+#### Example 2. Retrieve a range given 2 block
 
 `````
 {
@@ -41,7 +42,7 @@ To use this software, follow these steps:
 }
 `````
 
-#### Example 3. Retrieve for one block to the last block.
+#### Example 3. Retrieve for one block to the last block
 
 `````
 {
@@ -51,7 +52,7 @@ To use this software, follow these steps:
 }
 `````
 
-#### Example 4. Retrieve the entire Ethereum blockchain.
+#### Example 4. Retrieve the entire Ethereum blockchain
 
 `````
 {

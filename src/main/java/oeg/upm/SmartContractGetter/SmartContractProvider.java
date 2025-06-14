@@ -72,7 +72,7 @@ public class SmartContractProvider {
 			SmartContractProvider ec = new SmartContractProvider();
 			ec.configure(jsonObject);
 		} catch (JsonIOException | JsonSyntaxException | FileNotFoundException e) {
-			// TODO Auto-generated catch block
+e.printStackTrace(); // Log the exception for debugging
 			e.printStackTrace();
 		}
 	}

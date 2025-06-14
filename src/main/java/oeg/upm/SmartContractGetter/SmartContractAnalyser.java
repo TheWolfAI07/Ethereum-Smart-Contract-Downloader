@@ -42,7 +42,8 @@ public class SmartContractAnalyser {
 				int tm = 0;
 				Block block = web3j.getConnection().ethGetBlockByNumber(DefaultBlockParameter.valueOf(BigInteger.valueOf(i)), true).send().getBlock();
 				for(int j=0; j<block.getTransactions().size(); j++) {
-					TransactionResult<Transaction> tr = block.getTransactions().get(j);
+					@SuppressWarnings("unchecked")
+					TransactionResult<Transaction> tr = (TransactionResult<Transaction>) block.getTransactions().get(j);
 					getEtherscanContracts(tr.get().getTo(), apiKey);
 					tm++;
 					if(tm == 5) {
