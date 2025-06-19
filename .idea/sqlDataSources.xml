@@ -2,7 +2,10 @@
 <project version="4">
   <component name="DdlMappings">
     <mapping uuid="1855a1e4-f26a-402d-b41e-a3353b7e20d4" name="DDL data source Mapping">
-      <data-sources ddl="2bcedc3f-448b-4900-a023-b58778a37c3f" />
+      <data-sources ddl="04da55f5-6231-462f-af36-d3b5f5cdd4be" />
+      <scope>
+        <node kind="database" negative="1" />
+      </scope>
     </mapping>
   </component>
   <component name="SqlDataSourceStorage">
@@ -11,7 +14,7 @@
         <State>
           <option name="id" value="04da55f5-6231-462f-af36-d3b5f5cdd4be" />
           <option name="name" value="DDL data source" />
-          <option name="dbmsName" value="UNKNOWN" />
+          <option name="dbmsName" value="MONGO" />
           <option name="urls">
             <array />
           </option>
@@ -20,7 +23,7 @@
         <State>
           <option name="id" value="2bcedc3f-448b-4900-a023-b58778a37c3f" />
           <option name="name" value="DDL data source Mapping (DDL)" />
-          <option name="dbmsName" value="UNKNOWN" />
+          <option name="dbmsName" value="MONGO" />
           <option name="urls">
             <array>
               <option value="file://D:/" />
