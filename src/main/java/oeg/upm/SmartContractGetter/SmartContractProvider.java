@@ -1,18 +1,17 @@
 package oeg.upm.SmartContractGetter;
 
+import com.google.gson.JsonIOException;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.google.gson.JsonSyntaxException;
+import org.web3j.protocol.Web3j;
+import org.web3j.protocol.http.HttpService;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.math.BigInteger;
-
-import org.web3j.protocol.Web3j;
-import org.web3j.protocol.http.HttpService;
-
-import com.google.gson.JsonIOException;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import com.google.gson.JsonSyntaxException;
 
 public class SmartContractProvider {
 
