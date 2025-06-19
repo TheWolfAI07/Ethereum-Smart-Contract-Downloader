@@ -1,4 +1,5 @@
-oeg/upm/SmartContractGetter/SmartContractProvider.class
-oeg/upm/SmartContractGetter/ConfigTokens.class
-oeg/upm/SmartContractGetter/Web3jConnector.class
-oeg/upm/SmartContractGetter/SmartContractAnalyser.class
+oeg\upm\SmartContractGetter\SmartContractProvider.class
+oeg\upm\SmartContractGetter\SmartContractAnalyser.class
+oeg\upm\SmartContractGetter\package-info.class
+oeg\upm\SmartContractGetter\ConfigTokens.class
+oeg\upm\SmartContractGetter\Web3jConnector.class
