@@ -1,3 +1,14 @@
-"scripts": {
-  "build-and-serve": "npm run build && npx serve -s build"
+{
+  "name": "build-and-serve-config",
+  "scripts": {
+    "build-and-serve": "npm run build && npx serve -s build -l 3001"
+  },
+  "devDependencies": {
+    "serve": "latest"
+  },
+  "buildConfig": {
+    "outputDir": "build",
+    "servePort": 3001,
+    "installCommand": "npm install --save-dev"
+  }
 }
