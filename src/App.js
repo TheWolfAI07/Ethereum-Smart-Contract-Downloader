@@ -1,23 +1,25 @@
+import Alert from '@mui/material/Alert';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Chip from '@mui/material/Chip';
+import Container from '@mui/material/Container';
+import CssBaseline from '@mui/material/CssBaseline';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import LinearProgress from '@mui/material/LinearProgress';
+import Paper from '@mui/material/Paper';
+import Snackbar from '@mui/material/Snackbar';
+import Stack from '@mui/material/Stack';
+import Switch from '@mui/material/Switch';
+import ThemeProvider from '@mui/material/styles/ThemeProvider';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
 import React, { useEffect, useRef, useState } from 'react';
-import {
-  Alert,
-  AppBar,
-  Box,
-  Chip,
-  Container,
-  createTheme,
-  CssBaseline,
-  FormControlLabel,
-  LinearProgress,
-  Paper,
-  Stack,
-  Switch,
-  ThemeProvider,
-  Toolbar,
-  Typography,
-} from '@mui/material';
 import ContractForm from './components/ContractForm';
 import ContractResults from './components/ContractResults';
+import { createTheme } from '@mui/material/styles';
+import ContractList from './contract_list';
+import axios from 'axios';
 
 // Create a theme instance
 const theme = createTheme({
@@ -52,7 +54,7 @@ function App() {
     };
   }, []);
   
-  const handleFormSubmit = async (formData) => {
+  var handleFormSubmit = async (formData) => {
     setLoading(true);
     setError(null);
     setContracts([]);
@@ -174,7 +176,7 @@ function App() {
               Ethereum Smart Contract Downloader
             </Typography>
             <FormControlLabel
-              control={
+              control=/**/{
                 <Switch
                   checked={realTimeMode}
                   onChange={(e) => setRealTimeMode(e.target.checked)}
@@ -249,6 +251,147 @@ function App() {
           )}
         </Container>
       </Box>
+    </ThemeProvider>
+  );
+}
+
+export default App;
+
+const theme = createTheme({
+  palette: {
+    mode: 'dark',
+    primary: {
+      main: '#5469d4',
+    },
+    secondary: {
+      main: '#ff9d00',
+    },
+    background: {
+      default: '#121212',
+      paper: '#1e1e1e',
+    },
+  },
+  typography: {
+    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+  },
+  components: {
+    MuiCard: {
+      styleOverrides: {
+        root: {
+          borderRadius: 12,
+          boxShadow: '0 4px 20px 0 rgba(0,0,0,0.12)',
+        },
+      },
+    },
+  },
+});
+
+function App() {
+  const [contracts, setContracts] = useState([]);
+  const [notification, setNotification] = useState({ open: false, message: '', severity: 'info' });
+  const [backendStatus, setBackendStatus] = useState('checking');
+  const [formConfig, setFormConfig] = useState(null);
+  
+  // Check backend connection on load
+  useEffect(() => {
+    const checkBackend = async () => {
+      try {
+        const response = await axios.get('/api/status', { timeout: 3000 });
+        if (response.data && response.data.status === 'ok') {
+          setBackendStatus('connected');
+          
+          // Load saved config if available
+          if (response.data.config) {
+            setFormConfig(response.data.config);
+          }
+        } else {
+          setBackendStatus('error');
+        }
+      } catch (error) {
+        console.error('Backend connection error:', error);
+        setBackendStatus('error');
+      }
+    };
+    
+    checkBackend();
+  }, []);
+  
+  const handleContractsFound = (foundContracts) => {
+    setContracts(foundContracts);
+  };
+  
+  const showNotification = (message, severity = 'info') => {
+    setNotification({
+      open: true,
+      message,
+      severity,
+    });
+  };
+  
+  const handleCloseNotification = () => {
+    setNotification(prev => ({ ...prev, open: false }));
+  };
+  
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      
+      <AppBar position="static" color="primary" elevation={0}>
+        <Toolbar>
+          <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
+            Ethereum Contract Explorer
+          </Typography>
+          <Button
+            color="inherit"
+            href="https://etherscan.io"
+            target="_blank"
+          >
+            Etherscan
+          </Button>
+          <Button
+            color="inherit"
+            href="https://github.com/your-repo/ethereum-contract-explorer"
+            target="_blank"
+          >
+            GitHub
+          </Button>
+        </Toolbar>
+      </AppBar>
+      
+      <Container maxWidth="lg">
+        <Box sx={{ my: 4 }}>
+          <ContractForm
+            onContractsFound={handleContractsFound}
+            config={formConfig}
+            onShowNotification={showNotification}
+            backendStatus={backendStatus}
+          />
+          
+          {contracts.length > 0 && (
+            <ContractList
+              contracts={contracts}
+              onShowNotification={showNotification}
+            />
+          )}
+        </Box>
+      </Container>
+      
+      <Snackbar
+        open={notification.open}
+        autoHideDuration={6000}
+        onClose={handleCloseNotification}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+      >
+        <Alert
+          onClose={handleCloseNotification}
+          severity={notification.severity}
+          sx={{ width: '100%' }}
+          elevation={6}
+          variant="filled"
+        >
+          {notification.message}
+        </Alert>
+      </Snackbar>
     </ThemeProvider>
   );
 }

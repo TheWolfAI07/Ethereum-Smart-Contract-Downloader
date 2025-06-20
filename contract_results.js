@@ -52,7 +52,7 @@ function TabPanel({ children, value, index, ...other }) {
   );
 }
 
-var ContractResults = ({ contracts, onShowNotification, onContractsUpdate }) => {
+const ContractResults = ({ contracts, onShowNotification, onContractsUpdate }) => {
   const [selectedContract, setSelectedContract] = useState(null);
   const [sourceViewOpen, setSourceViewOpen] = useState(false);
   const [executeDialogOpen, setExecuteDialogOpen] = useState(false);
@@ -65,7 +65,7 @@ var ContractResults = ({ contracts, onShowNotification, onContractsUpdate }) => 
   
   // Initialize Web3 connection
   useEffect(() => {
-    var initWeb3 = async () => {
+    const initWeb3 = async () => {
       if (window.ethereum) {
         try {
           const web3Instance = new Web3(window.ethereum);
@@ -159,7 +159,7 @@ var ContractResults = ({ contracts, onShowNotification, onContractsUpdate }) => 
     setSourceViewOpen(true);
   };
   
-  var handleExecuteContract = (contract) => {
+  const handleExecuteContract = (contract) => {
     setSelectedContract(contract);
     const functions = extractFunctions(contract.source);
     setContractFunctions(functions);
