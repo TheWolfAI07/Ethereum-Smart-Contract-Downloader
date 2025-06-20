@@ -291,7 +291,6 @@
                   <option name="_fileType" value="Angular181Html" />
                   <option name="searchContext" value="ANY" />
                   <option name="replacement" value="" />
-                  <option name="flags" value="64" />
                 </InspectionPattern>
               </list>
             </option>
@@ -305,7 +304,6 @@
                   <option name="regExp" value="" />
                   <option name="_fileType" value="UNKNOWN" />
                   <option name="searchContext" value="ANY" />
-                  <option name="flags" value="64" />
                 </InspectionPattern>
               </list>
             </option>
@@ -347,6 +345,7 @@
     <inspection_tool class="DuplicatedCode" enabled="true" level="WEAK WARNING" enabled_by_default="true" editorAttributes="GENERIC_SERVER_ERROR_OR_WARNING" />
     <inspection_tool class="DynamicRegexReplaceableByCompiledPattern" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="DynamicallyGeneratedCodeJS" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="ES6DestructuringVariablesMerge" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
     <inspection_tool class="ES6TopLevelAwaitExpression" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="EmptyCatchBlockJS" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="EmptyClass" enabled="true" level="WARNING" enabled_by_default="true">
@@ -578,13 +577,14 @@
     <inspection_tool class="JNDIResource" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="insideTryAllowed" value="false" />
     </inspection_tool>
+    <inspection_tool class="JSAnnotator" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="JSClassNamingConvention" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="JSDeclarationsAtScopeStart" enabled="true" level="WEAK WARNING" enabled_by_default="true" />
+    <inspection_tool class="JSDeprecatedSymbols" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
+    <inspection_tool class="JSDuplicatedDeclaration" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="JSEqualityComparisonWithCoercion.TS" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="JSHint" enabled="true" level="ERROR" enabled_by_default="true" />
-    <inspection_tool class="JSNonStrictModeUsed" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="JSUnfilteredForInLoop" enabled="true" level="WARNING" enabled_by_default="true" />
-    <inspection_tool class="JSXSyntaxUsed" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="JUnit5Converter" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="JUnitTestNG" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="JavaAnnotator" enabled="true" level="ERROR" enabled_by_default="true" />
@@ -1195,7 +1195,6 @@
     <inspection_tool class="WhenWithOnlyElse" enabled="true" level="WEAK WARNING" enabled_by_default="true" />
     <inspection_tool class="XHTMLIncompatabilitiesJS" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="ZeroLengthArrayInitialization" enabled="true" level="WARNING" enabled_by_default="true" />
-    <inspection_tool class="b7251dc7-3c38-3e4b-b103-91190aa34bbf" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="unUsedMethod" enabled="true" level="WARNING" enabled_by_default="true" />
   </profile>
 </component>

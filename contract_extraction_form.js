@@ -28,24 +28,22 @@ var ContractForm = ({onContractsFound, config, onShowNotification, backendStatus
 	const [loading, setLoading] = useState(false);
 	const [errors, setErrors] = useState({});
 	
-	const blockExamples = [{
+	var blockExamples = [{
 		value: '*',
 		label: 'All Blocks',
 		description: 'Scan entire blockchain (slow)'
-	}, {value: '1543256', label: 'Single Block', description: 'Scan specific block'}, {
-		value: '1543250-1543256',
-		label: 'Block Range',
-		description: 'Scan range of blocks'
-	}, {value: '1543256-*', label: 'From Block to Latest', description: 'Scan from block to current'}];
+	}
+};
+]
+
+
+var validateForm = () => {
+	const newErrors = {};
 	
-	const validateForm = () => {
-		const newErrors = {};
-		
-		if (!formData.url.trim()) {
-			newErrors.url = 'Ethereum node URL is required';
-		} else if (!formData.url.startsWith('http')) {
-			newErrors.url = 'URL must start with http:// or https://';
-		}
+	if (!formData.url.trim()) {
+		newErrors.url = 'Ethereum node URL is required';
+	} else if (!formData.url.startsWith('http')) {
+		newErrors.url = 'URL must start with http:// or https://';
 		
 		if (!formData.blocks.trim()) {
 			newErrors.blocks = 'Block specification is required';
@@ -59,7 +57,8 @@ var ContractForm = ({onContractsFound, config, onShowNotification, backendStatus
 		
 		setErrors(newErrors);
 		return Object.keys(newErrors).length === 0;
-	};
+	}
+	
 	
 	var handleSubmit = async (e) => {
 		e.preventDefault();
@@ -763,4 +762,4 @@ var ContractForm = ({onContractsFound, config, onShowNotification, backendStatus
 											</Box>
 											);}
 										
-										export default ContractForm;;;;;;
+										export default ContractForm;;;;;;;;;
