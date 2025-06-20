@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="5eec02cb-efde-465c-9064-679824ca07ce" name="local (1)" url="http://localhost:3000">
+        <fileTransfer mountedRoot="" accessType="MOUNT" port="0" />
+      </webServer>
+    </option>
+    <groups>
+      <group>
+        <name>local</name>
+        <servers>
+          <name value="local (1)" />
+        </servers>
+      </group>
+    </groups>
+  </component>
+</project>
