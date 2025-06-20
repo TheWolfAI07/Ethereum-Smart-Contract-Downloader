@@ -1,4 +1,5 @@
 #!/bin/bash
+# Make script executable with: chmod +x launch.sh
 
 echo "Starting Ethereum Smart Contract Downloader..."
 
@@ -14,6 +15,17 @@ if ! command -v java &> /dev/null; then
     exit 1
 fi
 
+# Check if Maven is installed
+if ! command -v mvn &> /dev/null; then
+    echo "Maven is not installed. Please install Maven 3.6+ and try again."
+    exit 1
+fi
+
+# Clean up code formatting
+echo "Cleaning up code formatting..."
+npx prettier --write "src/**/*.{js,jsx,ts,tsx}"
+mvn formatter:format
+
 # Install dependencies if node_modules doesn't exist
 if [ ! -d "node_modules" ]; then
     echo "Installing dependencies..."
@@ -24,7 +36,14 @@ fi
 if [ ! -f ".env" ]; then
     echo "Creating .env file template. Please edit with your actual API keys."
     cp .env.example .env
+    echo "IMPORTANT: Please edit .env file with your actual API keys before proceeding."
+    echo "Press Enter to continue after editing the .env file..."
+    read -r
 fi
+
+# Configure the project
+echo "Configuring the project..."
+mvn clean install -DskipTests
 
 # Start the application in development mode
 echo "Starting application in development mode..."
