@@ -1,0 +1,47 @@
+}
+```
+
+<!--patch-->
+```json
+{
+  "operation": "modify",
+  "path": "package.json",
+  "description": "Update package.json with start scripts for deployment",
+  "language": "json",
+  "beforeSnippet": "  \"scripts\": {\n    \"start\": \"react-scripts start\",\n    \"build\": \"react-scripts build\",\n    \"test\": \"react-scripts test\",\n    \"eject\": \"react-scripts eject\",\n    \"start-backend\": \"mvn spring-boot:run\",\n    \"start-backend-jar\": \"java -jar target/SmartContractExtractor-1.0.jar\",\n    \"build-backend\": \"mvn clean package\",\n    \"start-api\": \"func start\",\n    \"dev\": \"concurrently \\\"npm run start-backend\\\" \\\"npm start\\\"\",\n    \"build-all\": \"npm run build-backend && npm run build\",\n    \"start-prod\": \"npm run build-all && npm run start-backend-jar\"\n  },",
+  "afterSnippet": "  \"scripts\": {\n    \"start\": \"react-scripts start\",\n    \"build\": \"react-scripts build\",\n    \"test\": \"react-scripts test\",\n    \"eject\": \"react-scripts eject\",\n    \"start-backend\": \"mvn spring-boot:run\",\n    \"start-backend-jar\": \"java -jar target/SmartContractExtractor-1.0.jar\",\n    \"build-backend\": \"mvn clean package\",\n    \"start-api\": \"func start\",\n    \"dev\": \"concurrently \\\"npm run start-backend\\\" \\\"npm start\\\"\",\n    \"build-all\": \"npm run build-backend && npm run build\",\n    \"start-prod\": \"npm run build-all && npm run start-backend-jar\",\n    \"docker-build\": \"docker-compose build\",\n    \"docker-start\": \"docker-compose up\",\n    \"docker-stop\": \"docker-compose down\",\n    \"setup\": \"cp -n .env.example .env || true && npm install\",\n    \"start-dev-fe\": \"react-scripts start\",\n    \"start-dev-be\": \"mvn spring-boot:run\"\n  },",
+}
+```
+
+<!--patch-->
+```json
+{
+  "operation": "create",
+  "path": ".gitignore",
+  "description": "Create gitignore file for version control",
+  "language": "text",
+  "beforeSnippet": "",
+  "afterSnippet": "# Dependencies\nnode_modules/\n/.pnp\n.pnp.js\n\n# Testing\n/coverage\n\n# Production\n/build\n\n# Environment variables\n.env\n.env.local\n.env.development.local\n.env.test.local\n.env.production.local\n\n# Logs\nnpm-debug.log*\nyarn-debug.log*\nyarn-error.log*\n\n# IDE and editors\n/.idea\n/.vscode\n*.swp\n*.swo\n\n# Maven\n/target/\n/pom.xml.tag\n/pom.xml.releaseBackup\n/pom.xml.versionsBackup\n/pom.xml.next\n/release.properties\n/dependency-reduced-pom.xml\n/buildNumber.properties\n.mvn/timing.properties\n.mvn/wrapper/maven-wrapper.jar\n\n# Java\n*.class\n*.log\n*.ctxt\n.mtj.tmp/\n*.jar\n*.war\n*.nar\n*.ear\n*.zip\n*.tar.gz\n*.rar\nhs_err_pid*\n\n# OS specific\n.DS_Store\nThumbs.db\n"
+}
+```
+
+Now that I've created all the necessary configuration files, let me explain how to launch the application:
+
+1. **Installation:**
+   - Run `npm install` to install all dependencies
+   - Copy `.env.example` to `.env` and add your actual API keys
+
+2. **Development Mode:**
+   - Run `npm run dev` to start both frontend and backend servers
+   - Frontend will be available at http://localhost:3000
+   - Backend will be available at http://localhost:8080
+
+3. **Using the Launch Script:**
+   - Make the script executable: `chmod +x launch.sh`
+   - Run `./launch.sh` to check prerequisites and start the application
+
+4. **Docker Deployment:**
+   - Run `docker-compose up` to start the application in containers
+   - This will build and run both frontend and backend containers
+
+The application is now configured with:
