@@ -1,39 +1,31 @@
 import React, { useState } from 'react';
-import { 
-  TextField, 
-  Button, 
-  Grid, 
-  FormControl, 
-  InputLabel, 
-  FormHelperText,
-  CircularProgress
-} from '@mui/material';
+import { Button, CircularProgress, FormControl, FormHelperText, Grid, TextField } from '@mui/material';
 
 const ContractForm = ({ onSubmit, isLoading }) => {
   const [formData, setFormData] = useState({
     url: '',
     blocks: '',
-    api: ''
+    api: '',
   });
   
   const [errors, setErrors] = useState({});
-
+  
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
-      [name]: value
+      [name]: value,
     });
     
     // Clear error when user types
     if (errors[name]) {
       setErrors({
         ...errors,
-        [name]: ''
+        [name]: '',
       });
     }
   };
-
+  
   const validateForm = () => {
     const newErrors = {};
     
@@ -49,7 +41,8 @@ const ContractForm = ({ onSubmit, isLoading }) => {
       // Check if blocks is a valid format: number, "*", or "number-number" or "number-*"
       const blocksPattern = /^(\d+|\*|\d+-\d+|\d+-\*)$/;
       if (!blocksPattern.test(formData.blocks)) {
-        newErrors.blocks = 'Invalid block format. Use a number, "*", or a range like "1000-2000" or "1000-*"';
+        newErrors.blocks =
+          'Invalid block format. Use a number, "*", or a range like "1000-2000" or "1000-*"';
       }
     }
     
@@ -60,7 +53,7 @@ const ContractForm = ({ onSubmit, isLoading }) => {
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
-
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     
@@ -68,7 +61,7 @@ const ContractForm = ({ onSubmit, isLoading }) => {
       onSubmit(formData);
     }
   };
-
+  
   return (
     <form onSubmit={handleSubmit}>
       <Grid container spacing={3}>

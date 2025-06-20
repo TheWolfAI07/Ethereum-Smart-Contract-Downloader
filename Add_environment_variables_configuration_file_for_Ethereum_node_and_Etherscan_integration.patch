@@ -1,0 +1,17 @@
+Subject: [PATCH] Add environment variables configuration file for Ethereum node and Etherscan integration
+---
+Index: envConfiguration.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>ISO-8859-1
+===================================================================
+diff --git a/envConfiguration.properties b/envConfiguration.properties
+new file mode 100644
+--- /dev/null	(revision 9b522dd3c0944b1ead4472e1405ed1f396afbbda)
++++ b/envConfiguration.properties	(revision 9b522dd3c0944b1ead4472e1405ed1f396afbbda)
+@@ -0,0 +1,4 @@
++ETHEREUM_NODE_URL=https://mainnet.infura.io/v3/dummy_key_for_testing
++ETHERSCAN_API_KEY=dummy_etherscan_key_for_testing
++PORT=3000
++BACKEND_PORT=8080
+\ No newline at end of file

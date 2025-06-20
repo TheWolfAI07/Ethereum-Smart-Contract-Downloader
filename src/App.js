@@ -1,20 +1,20 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { 
-  Container, 
-  Typography, 
-  Box, 
-  AppBar, 
-  Toolbar, 
-  Paper, 
-  CssBaseline,
-  ThemeProvider,
-  createTheme,
+import React, { useEffect, useRef, useState } from 'react';
+import {
   Alert,
-  LinearProgress,
+  AppBar,
+  Box,
   Chip,
+  Container,
+  createTheme,
+  CssBaseline,
+  FormControlLabel,
+  LinearProgress,
+  Paper,
   Stack,
   Switch,
-  FormControlLabel
+  ThemeProvider,
+  Toolbar,
+  Typography,
 } from '@mui/material';
 import ContractForm from './components/ContractForm';
 import ContractResults from './components/ContractResults';
@@ -42,7 +42,7 @@ function App() {
   const [realTimeMode, setRealTimeMode] = useState(false);
   const [progress, setProgress] = useState(0);
   const eventSourceRef = useRef(null);
-
+  
   useEffect(() => {
     // Cleanup event source on unmount
     return () => {
@@ -51,17 +51,17 @@ function App() {
       }
     };
   }, []);
-
+  
   const handleFormSubmit = async (formData) => {
     setLoading(true);
     setError(null);
     setContracts([]);
     setStatus('');
     setProgress(0);
-
+    
     try {
       console.log('Form data submitted:', formData);
-
+      
       if (realTimeMode) {
         // Use real-time extraction with SSE
         await handleRealTimeExtraction(formData);
@@ -76,7 +76,7 @@ function App() {
       setLoading(false);
     }
   };
-
+  
   const handleSyncExtraction = async (formData) => {
     const response = await fetch('/api/contracts', {
       method: 'POST',
@@ -86,25 +86,25 @@ function App() {
       body: JSON.stringify({
         url: formData.url,
         blocks: formData.blocks,
-        api: formData.api
+        api: formData.api,
       }),
     });
-
+    
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
-
+    
     const contracts = await response.json();
     setContracts(contracts);
     setStatus(`Found ${contracts.length} contracts`);
   };
-
+  
   const handleRealTimeExtraction = async (formData) => {
     // Close existing event source if any
     if (eventSourceRef.current) {
       eventSourceRef.current.close();
     }
-
+    
     // Start async extraction
     const response = await fetch('/api/contracts/extract-async', {
       method: 'POST',
@@ -114,36 +114,36 @@ function App() {
       body: JSON.stringify({
         url: formData.url,
         blocks: formData.blocks,
-        api: formData.api
+        api: formData.api,
       }),
     });
-
+    
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
-
+    
     // Set up SSE connection for real-time updates
     eventSourceRef.current = new EventSource('/api/contracts/stream');
-
+    
     eventSourceRef.current.onmessage = (event) => {
       console.log('SSE message:', event);
     };
-
+    
     eventSourceRef.current.addEventListener('contract', (event) => {
       const contract = JSON.parse(event.data);
-      setContracts(prev => [...prev, contract]);
-      setProgress(prev => prev + 10); // Increment progress
+      setContracts((prev) => [...prev, contract]);
+      setProgress((prev) => prev + 10); // Increment progress
     });
-
+    
     eventSourceRef.current.addEventListener('status', (event) => {
       setStatus(event.data);
     });
-
+    
     eventSourceRef.current.addEventListener('error', (event) => {
       setError(event.data);
       setLoading(false);
     });
-
+    
     eventSourceRef.current.onerror = (error) => {
       console.error('SSE error:', error);
       if (eventSourceRef.current.readyState === EventSource.CLOSED) {
@@ -151,7 +151,7 @@ function App() {
         setStatus('Connection closed');
       }
     };
-
+    
     // Auto-close after 30 seconds to prevent hanging connections
     setTimeout(() => {
       if (eventSourceRef.current) {
@@ -163,7 +163,7 @@ function App() {
       }
     }, 30000);
   };
-
+  
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -186,27 +186,23 @@ function App() {
             />
           </Toolbar>
         </AppBar>
-
+        
         <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
           <Paper sx={{ p: 3, mb: 4 }}>
             <Typography variant="h5" component="h2" gutterBottom>
               Extract Smart Contracts
             </Typography>
             <Typography variant="body1" paragraph>
-              Configure the parameters below to extract smart contracts from the Ethereum blockchain.
+              Configure the parameters below to extract smart contracts from the Ethereum
+              blockchain.
               {realTimeMode && (
-                <Chip 
-                  label="Real-time mode enabled" 
-                  color="primary" 
-                  size="small" 
-                  sx={{ ml: 1 }} 
-                />
+                <Chip label="Real-time mode enabled" color="primary" size="small" sx={{ ml: 1 }} />
               )}
             </Typography>
-
+            
             <ContractForm onSubmit={handleFormSubmit} isLoading={loading} />
           </Paper>
-
+          
           {/* Status and Progress Display */}
           {(loading || status) && (
             <Paper sx={{ p: 3, mb: 4 }}>
@@ -214,7 +210,9 @@ function App() {
                 {loading && (
                   <>
                     <Typography variant="h6">
-                      {realTimeMode ? 'Real-time Extraction in Progress...' : 'Extracting Contracts...'}
+                      {realTimeMode
+                        ? 'Real-time Extraction in Progress...'
+                        : 'Extracting Contracts...'}
                     </Typography>
                     {realTimeMode && progress > 0 && (
                       <LinearProgress variant="determinate" value={Math.min(progress, 100)} />
@@ -230,10 +228,10 @@ function App() {
               </Stack>
             </Paper>
           )}
-
+          
           {contracts.length > 0 && (
-            <ContractResults 
-              contracts={contracts} 
+            <ContractResults
+              contracts={contracts}
               realTimeMode={realTimeMode}
               onExecuteContract={(contract) => {
                 console.log('Execute contract:', contract);
@@ -241,7 +239,7 @@ function App() {
               }}
             />
           )}
-
+          
           {error && (
             <Paper sx={{ p: 3, mb: 4 }}>
               <Alert severity="error">
