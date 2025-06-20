@@ -19,6 +19,8 @@ import ContractForm from './components/ContractForm';
 import ContractResults from './components/ContractResults';
 import { createTheme } from '@mui/material/styles';
 import ContractList from './contract_list';
+import WalletManager from './components/WalletManager';
+import ExodusWalletDisplay from './components/ExodusWalletDisplay';
 import axios from 'axios';
 
 // Create a theme instance
@@ -270,6 +272,12 @@ const theme = createTheme({
       default: '#121212',
       paper: '#1e1e1e',
     },
+    exodus: {
+      main: '#00DCBA', // Exodus brand color
+      dark: '#00B094',
+      light: '#61FFE4',
+      contrastText: '#000000',
+    },
   },
   typography: {
     fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
@@ -360,6 +368,14 @@ function App() {
       
       <Container maxWidth="lg">
         <Box sx={{ my: 4 }}>
+          <ExodusWalletDisplay
+            onCopyAddress={showNotification}
+          />
+          
+          <WalletManager
+            onShowNotification={showNotification}
+          />
+          
           <ContractForm
             onContractsFound={handleContractsFound}
             config={formConfig}

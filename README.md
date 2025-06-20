@@ -1,148 +1,125 @@
-# Install prettier for JavaScript/TypeScript formatting
-npm install --save-dev prettier
-
 # Ethereum Contract Explorer
 
-A modern React application for searching, extracting, and analyzing Ethereum smart contracts.
+A React & Java application for analyzing Ethereum smart contracts.
+
+## Quick Start
+
+```bash
+npm run launch
+```
+
+Access at:
+
+- `http://0.0.0.0:3000`
+- `http://YOUR_IP_ADDRESS:3000`
 
 ## Features
 
-- Connect to any Ethereum node (Infura, Alchemy, or local)
-- Scan blocks for contract creation transactions
-- Retrieve and display smart contract source code
-- Analyze contract details and metadata
-- Intuitive, responsive Material UI interface
+- Connect to any Ethereum node
+- Extract smart contracts from blocks
+- View contract source code and details
+- Analyze contract functions and security
 
-## Setup and Installation
+## Tech Stack
 
-### Prerequisites
-
-- Node.js 16+ and npm
-- Java 11+ for the backend (Spring Boot)
-- An Ethereum node access URL (e.g., Infura, Alchemy)
-- Etherscan API key (free tier available)
-
-### Frontend Setup
-
-1. Clone the repository
-2. Install dependencies:
-   ```
-   npm install
-   ```
-3. Start the development server:
-   ```
-   npm start
-   ```
-
-### Backend Setup
-
-1. Make sure you have Java 11+ installed
-2. Navigate to the backend folder
-3. Run the Spring Boot application:
-   ```
-   ./mvnw spring-boot:run
-   ```
+- **Frontend**: React with Material UI
+- **Backend**: Java Spring Boot
+- **Blockchain**: Web3j for Ethereum integration
 
 ## Configuration
 
-The application requires:
+Wallet addresses are preconfigured:
 
-1. **Ethereum Node URL** - Create a free account on [Infura](https://infura.io) or [Alchemy](https://www.alchemy.com)
-2. **Etherscan API Key** - Get a free API key from [Etherscan](https://etherscan.io/apis)
+- Primary: `0x742d35Cc6634C0532925a3b844Bc454e4438f44e`
+- Backup: `0x1234567890123456789012345678901234567890`
 
-## Usage
+# Ethereum Contract Explorer
 
-1. Enter your Ethereum node URL and Etherscan API key
-2. Specify the blocks to scan:
-    - `*` for all blocks (slow)
-    - `1543256` for a specific block
-    - `1543250-1543256` for a range of blocks
-    - `1543256-*` from a block to the latest
-3. Click "Extract Contracts" to begin the search
-4. View and analyze the found contracts in the results table
+A modern application for exploring and analyzing Ethereum smart contracts directly from the blockchain.
+
+## Features
+
+- Search and extract contracts from the Ethereum blockchain
+- View contract source code and functions
+- Execute read-only contract calls
+- Dark mode UI with Material Design
+
+## Quick Start
+
+### Running the Application
+
+```bash
+# Start the application with the run script
+./run.sh
+```
+
+The application will be available at:
+
+- http://localhost:8888
+- http://YOUR_IP:8888 (on your local network)
+
+### Alternative: Using Docker
+
+```bash
+# Start with Docker Compose
+docker-compose up
+```
+
+## Configuration
+
+The application uses environment variables for configuration. These can be set in the `.env` file:
+
+- `PORT`: Application port (default: 8888)
+- `ETHEREUM_NODE_URL`: Ethereum node URL (Infura, Alchemy, etc.)
+- `ETHERSCAN_API_KEY`: Etherscan API key for source code verification
+
+## Development
+
+### Prerequisites
+
+- Node.js 14+ and npm
+- Java 11+ (optional, for backend)
+
+### Installation
+
+```bash
+# Install dependencies
+npm install
+
+# Start the application in development mode
+npm start
+```
 
 ## License
 
 MIT
-# Ethereum Smart Contract Extractor
+Contract whitelist:
 
-An application for downloading, analyzing and extracting information from Ethereum smart contracts.
-
-## Quick Start
-
-### One-Click Launch
-
-To launch the application with a single command:
-
-```bash
-# Make launch script executable
-chmod +x launch.sh
-
-# Run the launch script
-./launch.sh
-```
-
-The launch script will detect if Docker is available and use it. Otherwise, it will fall back to local deployment.
-
-### Manual Launch
-
-#### Using Docker (Recommended)
-
-1. Make sure Docker and Docker Compose are installed
-2. Copy environment template: `cp .env.example .env`
-3. Edit `.env` with your API keys
-4. Run `docker-compose up`
-
-#### Using npm scripts
-
-```bash
-# Setup the environment
-npm run setup
-
-# Start the application (Docker)
-npm run docker-start
-
-# OR start in development mode (local)
-npm run dev
-```
-
-## Available Scripts
-
-- `npm run one-click` - Setup and start application with one command
-- `npm run setup` - Create .env file and install dependencies
-- `npm run dev` - Start local development servers
-- `npm run docker-start` - Start application using Docker
-- `npm run docker-stop` - Stop Docker containers
-- `npm run build-all` - Build both frontend and backend
-
-## Configuration
-
-Edit the `.env` file to configure:
-
-- Ethereum node URL (Infura)
-- Etherscan API key
-- Application settings
-
-## Accessing the Application
-
-- Frontend: http://localhost:3000
-- Backend API: http://localhost:8080/api
+- USDC: `0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48`
+- USDT: `0xdAC17F958D2ee523a2206206994597C13D831ec7`
 
 ## Development
 
-To contribute to development:
+### Frontend (React)
 
-1. Clone the repository
-2. Run `npm run setup`
-3. Run `npm run dev` to start local development servers
-4. Make your changes
-5. Run `npm run build-all` to verify everything builds correctly
+```bash
+# Install dependencies
+npm install
+
+# Start React development server
+npm start
+```
+
+### Backend (Java)
+
+```bash
+# Build the Java backend
+mvn clean package
+
+# Run the backend
+java -jar target/SmartContractExtractor-1.0.jar
+```
 
 ## License
 
-See the [LICENSE](LICENSE) file for details.
-# Run prettier on all JS/TS files
-npx prettier --write "src/**/*.{js,jsx,ts,tsx}"
-
-# Install Maven formatter plugin for Java code
-# Add to pom.xml and run: mvn formatter: format
+MIT

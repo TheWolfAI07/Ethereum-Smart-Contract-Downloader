@@ -1006,4 +1006,4 @@ const ContractForm = ({ onContractsFound, config, onShowNotification, backendSta
                       </Box>
                       );}
                     
-                    export default ContractForm;;;;;;;;;;;
+                    export default ContractForm;;;;;;;;;;;;

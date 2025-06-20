@@ -1,15 +1,14 @@
 {
-{
   "name": "ethereum-contract-explorer",
   "version": "1.0.0",
   "description": "Application for exploring and analyzing Ethereum smart contracts",
   "private": true,
   "scripts": {
-    "start": "react-scripts start",
+    "start": "react-scripts start --port 8888",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "quick": "chmod +x run-now.sh && ./run-now.sh"
+    "launch": "chmod +x run.sh && ./run.sh"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
