@@ -20,13 +20,13 @@
       </list>
     </option>
     <option name="generatorType" value="OPENAPI_GENERATOR_V7" />
-    <option name="jdkPath" value="" />
-    <option name="language" value="" />
+    <option name="jdkPath" value="C:\Program Files\JetBrains\WebStorm 2025.1.2\jbr\bin\java.exe" />
+    <option name="language" value="typescript-node" />
     <option name="projectPathOnTarget" />
     <option name="selectedOptions">
       <list />
     </option>
-    <option name="specificationPath" value="" />
+    <option name="specificationPath" value="D:\node\node_modules\corepack\package.json" />
     <method v="2" />
   </configuration>
 </component>
